@@ -15,8 +15,8 @@ const changeForm = document.querySelector(".changeForm");
 let currentRow = null;
 
 closeBtns.forEach(btn => {
-    btn.addEventListener("click", evt => {
-        evt.target.parentElement.style.display = "none";
+    btn.addEventListener("click", (e) => {
+        e.target.parentElement.style.display = "none";
         addForm.reset();
         changeForm.reset();
     })
@@ -26,8 +26,8 @@ addBtn.addEventListener("click", (e)=> {
     e.preventDefault();
     addWindow.style.display = "flex";
 })
-subAdd.addEventListener("click", evt => {
-    evt.preventDefault()
+subAdd.addEventListener("click", (e) => {
+    e.preventDefault()
     const data = getDataFromForm(addForm)
     const row = render(data);
     table.append(row);
@@ -43,13 +43,19 @@ subDel.addEventListener("click", (e) => {
 });
 
 delBtns.forEach((btn) => {
-    btn.addEventListener("click", (evt) => {
-        let link = evt.target;
+    delHandler(btn);
+});
+
+function delHandler(btn) {
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let link = e.target;
         const tr = link.parentElement.parentElement;
         delWindow.style.display = "flex";
         currentRowForDelete = tr;
     });
-});
+}
+
 changeBtns.forEach((btn) => {
     changeHandler(btn);
 });
@@ -109,14 +115,8 @@ function render(data) {
 
     const tdDelete = createTd();
     tdDelete.append(deleteBtn);
-    deleteBtn.addEventListener("click", (evt) => {
-        evt.preventDefault();
-        let link = evt.target;
-        const td = link.parentElement.parentElement;
-        delConfirm.style.display = "flex";
-        currentRowForDelete = td;
-     });
-    changeHandler(changeBtn)
+    delHandler(deleteBtn);
+    changeHandler(changeBtn);
     const tdChange = createTd();
     tdChange.append(changeBtn);
     const element = `
