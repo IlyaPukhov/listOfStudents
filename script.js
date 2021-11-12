@@ -22,7 +22,7 @@ closeBtns.forEach(btn => {
     })
 })
 
-addBtn.addEventListener("click", (e)=> {
+addBtn.addEventListener("click", (e) => {
     e.preventDefault();
     addWindow.style.display = "flex";
 })
@@ -31,6 +31,12 @@ subAdd.addEventListener("click", (e) => {
     const data = getDataFromForm(addForm)
     const row = render(data);
     table.append(row);
+    document.querySelectorAll(".btnChange").forEach(btn => {
+        changeHandler(btn);
+    });
+    document.querySelectorAll(".btnDel").forEach(btn => {
+        delHandler(btn);
+    });
     addWindow.style.display = "none";
     addForm.reset();
 })
@@ -69,8 +75,7 @@ function changeHandler(btn) {
             let allFormInput = changeForm.querySelectorAll("input");
             if (i === 1) {
                 allFormInput[i].value = currentRow.children[i].textContent.split(".").reverse().join("-");
-            }
-            else {
+            } else {
                 allFormInput[i].value = currentRow.children[i].textContent;
             }
         }
@@ -106,30 +111,15 @@ function getDataFromForm(selector) {
 }
 
 function render(data) {
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "btnDel";
-    deleteBtn.textContent = "Удалить";
-    const changeBtn = document.createElement("button");
-    changeBtn.className = "btnChange";
-    changeBtn.textContent = "Изменить";
-
-    const tdDelete = createTd();
-    tdDelete.append(deleteBtn);
-    delHandler(deleteBtn);
-    changeHandler(changeBtn);
-    const tdChange = createTd();
-    tdChange.append(changeBtn);
     const element = `
       <td>${data.name}</td>
       <td>${data.date.split("-").reverse().join(".")}</td>
       <td>${data.email}</td>
       <td>${data.tel}</td>
+      <td><button type="button" class="btnChange"> Изменить</button></td>
+      <td><button type="button" class="btnDel"> Удалить</button></td>
   `;
     const tr = document.createElement("tr");
     tr.innerHTML = element;
-    tr.append(tdChange, tdDelete);
     return tr;
-}
-function createTd() {
-    return document.createElement("td");
 }
