@@ -13,6 +13,7 @@
 
 <table class="table" id="table">
     <tr class="title">
+        <th>№</th>
         <th>ФИО</th>
         <th>Дата рождения</th>
         <th>Электронная почта</th>
@@ -20,81 +21,11 @@
         <th>Изменить данные</th>
         <th>Удалить студента</th>
     </tr>
-    <tr>
-        <td class="nameStud">Абакумов Илья Александрович</td>
-        <td>13.10.2002</td>
-        <td>il.abakumoff@gmail.com</td>
-        <td>89201311755</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
-    <tr>
-        <td class="nameStud">Аристов Даниил Владимирович</td>
-        <td>16.12.2002</td>
-        <td>danilka-aristov@mail.ru</td>
-        <td>89159939894</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
-    <tr>
-        <td class="nameStud">Бабушкина Лидия Алексеевна</td>
-        <td>10.08.2003</td>
-        <td>babushckinalid@yandex.ru</td>
-        <td>89051312153</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
-    <tr>
-        <td class="nameStud">Пухов Илья Николаевич</td>
-        <td>01.08.2003</td>
-        <td>dinamond2003@gmail.com</td>
-        <td>89997402433</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
-    <tr>
-        <td class="nameStud">Сальникова Екатерина Андреевна</td>
-        <td>31.07.2003</td>
-        <td>katya63894@gmail.com</td>
-        <td>89502430004</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
-    <tr>
-        <td class="nameStud">Себов Владислав Николаевич</td>
-        <td>23.01.2003</td>
-        <td>sebov.vlad@inbox.ru</td>
-        <td>89016961554</td>
-        <td>
-            <button type="button" class="btnChange"> Изменить</button>
-        </td>
-        <td>
-            <button type="button" class="btnDel"> Удалить</button>
-        </td>
-    </tr>
+    <tbody class="tableBody">
+    </tbody>
 </table>
 
-<div class="addStudent" id="add" style="display: none">
+<div class="addStudent hide" id="add">
     <a class="close closeAdd"></a>
     <form class="addForm">
         <table class="tabAdd">
@@ -116,44 +47,18 @@
             </tr>
         </table>
         <div class="button-wrapper">
-            <button type="submit" class="subAdd"> Добавить студента</button>
+            <button type="submit" class="subBtn subAdd"> Добавить студента</button>
         </div>
     </form>
 </div>
 
-<div class="changeStudent" id="change" style="display: none">
-    <a class="close closeChange"></a>
-    <form class="changeForm">
-        <table class="tabAdd">
-            <tr>
-                <td> Ваше имя</td>
-                <td><label><input type="text" class="name"></label></td>
-            </tr>
-            <tr>
-                <td> Дата рождения</td>
-                <td><label><input type="date" class="date"></label></td>
-            </tr>
-            <tr>
-                <td> Email</td>
-                <td><label><input type="email" class="email"></label></td>
-            </tr>
-            <tr>
-                <td> Номер телефона</td>
-                <td><label><input type="tel" class="tel"></label></td>
-            </tr>
-        </table>
-        <div class="button-wrapper">
-            <button type="submit" class="subChange"> Изменить данные</button>
-        </div>
-    </form>
-</div>
-
-<div class="delStudent" id="delete" style="display: none">
+<div class="delStudent hide" id="delete">
     <a class="close closeDel"></a>
     <form>
-        Вы уверены, что хотите удалить данного студента из списка?
+        <p>Вы уверены, что хотите удалить данного студента из списка?</p>
+        <p class="delName"></p>
         <div class="button-wrapper">
-            <button type="submit" class="subDel" id="yes"> Удалить</button>
+            <button type="submit" class="subDel"> Удалить</button>
         </div>
     </form>
 </div>
