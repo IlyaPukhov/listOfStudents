@@ -1,20 +1,15 @@
 const data = new function () {
     let inc = 0;
     const arr = {};
-
     this.create = (obj) => {
         obj.id = ++inc;
         arr[obj.id] = obj;
     };
-
     this.get = (id) => arr[id];
-
     this.getAll = () => Object.values(arr);
-
     this.update = (id, obj) => {
         arr[id] = obj;
     };
-
     this.delete = (id) => {
         delete arr[id];
     };
@@ -85,24 +80,18 @@ const student = new function () {
             }
             str += tmp;
         });
-
         util.q('.tableBody')[0].innerHTML = str;
-
         util.q('.btnDel').forEach(btn => {
             btn.addEventListener('click', remove);
         });
-
         util.q('.btnChange').forEach(btn => {
             btn.addEventListener('click', edit);
-        })
-
+        });
         util.q('.close').forEach(elem => {
             elem.addEventListener('click', () => {
                 elem.parentElement.classList.replace('flex', 'hide');
-            })
+            });
         });
-
-
     };
 
     const submit = function (event) {
@@ -113,18 +102,14 @@ const student = new function () {
             email: util.q('.email')[0].value,
             tel: util.q('.tel')[0].value,
         };
-
-
         if (activeAdd) {
             data.create(st);
         } else {
             st.id = activeStudent;
             data.update(activeStudent, st);
         }
-
         util.q('.addStudent')[0].classList.replace('flex', 'hide');
         render()
-
     };
 
     let activeAdd = null;
@@ -136,17 +121,14 @@ const student = new function () {
         util.q('.delStudent')[0].classList.replace('hide', 'flex');
     };
 
-
-    const edit = function() {
+    const edit = function () {
         if (this.dataset) {
             activeStudent = this.dataset.id;
             activeAdd = false;
         }
-
         if (activeAdd) {
             util.q('.subBtn')[0].innerHTML = 'Добавить студента';
             util.q('.subBtn')[0].classList.replace('subChange', 'subAdd');
-
             util.q('.addForm')[0].reset();
         } else {
             util.q('.subBtn')[0].innerHTML = 'Изменить данные';
@@ -157,7 +139,6 @@ const student = new function () {
             util.q('.date')[0].value = changeDateFormat(obj.date);
             util.q('.email')[0].value = obj.email;
             util.q('.tel')[0].value = obj.tel;
-
         }
         util.q('.addStudent')[0].classList.replace('hide', 'flex');
     }
@@ -170,18 +151,14 @@ const student = new function () {
                     <td>{tel}</td>
                     <td><button class="btnChange" data-id={id}>Изменить</button></td>
                     <td><button class="btnDel" data-id={id}>Удалить</button></td>
-                    
                 </tr>`;
 
     const init = () => {
-
         render();
-
         util.q('.btnAdd')[0].addEventListener('click', () => {
             activeAdd = true;
             edit();
         })
-
         util.q('.subDel')[0].addEventListener('click', (event) => {
             event.preventDefault();
             data.delete(activeStudent);
