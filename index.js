@@ -96,7 +96,7 @@ const handler = function (req, res) {
     staticFileDir.serve(req, res); // статический файловый сервер для обслуживания
 }
 
-http.createServer(handler).listen(8096, () => {
+http.createServer(handler).listen(8090, () => {
     console.log("run");
 })
 

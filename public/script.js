@@ -57,32 +57,7 @@ const util = new function () {
 };
 
 const student = new function () {
-    const render = () => {
-        let str = '';
-        //let inc = 0;
-        data.getAll().forEach(obj => {
-            let tmp = tpl;
-            //tmp = tmp.replaceAll('{Id}', ++inc);
-            for (let k in obj) {
-                tmp = tmp.replaceAll(`{` + k + '}', obj[k]);
-            }
-            str += tmp;
-        });
-        util.q('.tableBody')[0].innerHTML = str;
-        util.q('.btnDel').forEach(btn => {
-            btn.addEventListener('click', remove);
-        });
-        util.q('.btnChange').forEach(btn => {
-            btn.addEventListener('click', edit);
-        });
-        util.q('.close').forEach(elem => {
-            elem.addEventListener('click', () => {
-                elem.parentElement.style.display = 'none';
-            });
-        });
-    };
-
-    const submit = function (event) {
+    this.submit = (event) => {
         event.preventDefault()
         let st = {
             name: util.q('.name')[0].value,
@@ -97,7 +72,7 @@ const student = new function () {
             data.update(activeStudent, st);
         }
         util.q('.addStudent')[0].style.display = 'none';
-        render()
+        this.render()
     };
 
     let activeAdd = null;
@@ -130,6 +105,28 @@ const student = new function () {
         }
         util.q('.addStudent')[0].style.display = 'flex';
     }
+    this.render = () => {
+        let str = '';
+        data.getAll().forEach(obj => {
+            let tmp = tpl;
+            for (let k in obj) {
+                tmp = tmp.replaceAll(`{` + k + '}', obj[k]);
+            }
+            str += tmp;
+        });
+        util.q('.tableBody')[0].innerHTML = str;
+        util.q('.btnDel').forEach(btn => {
+            btn.addEventListener('click', remove);
+        });
+        util.q('.btnChange').forEach(btn => {
+            btn.addEventListener('click', edit);
+        });
+        util.q('.close').forEach(elem => {
+            elem.addEventListener('click', () => {
+                elem.parentElement.style.display = 'none';
+            });
+        });
+    };
 
     let tpl = `<tr>
                     <td class="id">{Id}</td>
@@ -143,7 +140,7 @@ const student = new function () {
 
     const init = () => {
         data.init(() => {
-            render();
+            this.render();
         });
         util.q('.btnAdd')[0].addEventListener('click', () => {
             activeAdd = true;
@@ -152,13 +149,13 @@ const student = new function () {
         util.q('.subDel')[0].addEventListener('click', (event) => {
             event.preventDefault();
             data.delete(activeStudent);
-            render();
+            this.render();
             util.q('.delStudent')[0].style.display = 'none';
         })
     }
 
     util.listen(util.q('.addForm')[0], 'submit', (event) => {
-        submit(event);
+        this.submit(event);
     })
 
     window.addEventListener('load', init);
