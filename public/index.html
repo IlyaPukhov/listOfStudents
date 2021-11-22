@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="./style.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Список студентов ЦПИ-11</title>
 </head>
@@ -25,7 +25,7 @@
     </tbody>
 </table>
 
-<div class="addStudent hide" id="add">
+<div class="addStudent" style="display: none" id="add">
     <a class="close closeAdd"></a>
     <form class="addForm">
         <table class="tabAdd">
@@ -52,7 +52,7 @@
     </form>
 </div>
 
-<div class="delStudent hide" id="delete">
+<div class="delStudent" style="display: none" id="delete">
     <a class="close closeDel"></a>
     <form>
         <p>Вы уверены, что хотите удалить данного студента из списка?</p>
@@ -62,6 +62,6 @@
         </div>
     </form>
 </div>
-<script src="./js/script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>
