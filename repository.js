@@ -1,9 +1,15 @@
+const {readFileSync, stat, writeFile, writeFileSync} = require('fs');
+
 module.exports = new function () {
-    const data = {};
+    const fileName = "./data.json";
+    let data = {};
     let increment = 0;
     this.create = dt => {
         dt.Id = increment++;
         data[dt.Id] = dt;
+        writeFile(fileName, JSON.stringify(data), err => {
+            if (err) console.error(err)
+        });
         return dt;
     }
     this.getAll = () => {
@@ -12,7 +18,23 @@ module.exports = new function () {
     this.get = id => data[id];
     this.update = dt => {
         data[dt.Id] = dt;
+        writeFile(fileName, JSON.stringify(data), err => {
+            if (err) console.error(err)
+        });
         return dt;
     }
-    this.delete = id => delete data[id];
+    this.delete = id => {
+        delete data[id];
+        writeFile(fileName, JSON.stringify(data), err => {
+            if (err) console.error(err)
+        });
+        return {remove: "done"}
+    }
+
+    stat(fileName, (err) => {
+        if (err && err.code === "ENOENT") {
+            writeFileSync(fileName, "{}");
+        }
+        data = JSON.parse(readFileSync(fileName, {encoding: "UTF-8"}));
+    })
 }
