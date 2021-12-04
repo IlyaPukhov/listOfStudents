@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link href="./style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Список студентов ЦПИ-11</title>
+</head>
+<body>
+
+<div class="button-wrapper">
+    <button type="button" class="btnAdd"> Добавить студента</button>
+</div>
+
+<table class="table" id="table">
+    <tr class="title">
+        <th>№</th>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Электронная почта</th>
+        <th>Номер телефона</th>
+        <th>Изменить данные</th>
+        <th>Удалить студента</th>
+    </tr>
+    <tbody class="tableBody">
+    </tbody>
+</table>
+
+<div class="addStudent" style="display: none" id="add">
+    <a class="close closeAdd"></a>
+    <form class="addForm">
+        <table class="tabAdd">
+            <tr>
+                <td> Ваше имя</td>
+                <td><label><input type="text" class="name"></label></td>
+            </tr>
+            <tr>
+                <td> Дата рождения</td>
+                <td><label><input type="date" class="date"></label></td>
+            </tr>
+            <tr>
+                <td> Email</td>
+                <td><label><input type="email" class="email"></label></td>
+            </tr>
+            <tr>
+                <td> Номер телефона</td>
+                <td><label><input type="tel" class="tel"></label></td>
+            </tr>
+        </table>
+        <div class="button-wrapper">
+            <button type="submit" class="subBtn subAdd"> Добавить студента</button>
+        </div>
+    </form>
+</div>
+
+<div class="delStudent" style="display: none" id="delete">
+    <a class="close closeDel"></a>
+    <form>
+        <p>Вы уверены, что хотите удалить данного студента из списка?</p>
+        <p class="delName"></p>
+        <div class="button-wrapper">
+            <button type="submit" class="subDel"> Удалить</button>
+        </div>
+    </form>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>
